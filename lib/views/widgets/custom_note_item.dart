@@ -25,7 +25,7 @@ class NoteItem extends StatelessWidget {
               'Flutter Tips',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 22,
+                fontSize: 20,
               ),
             ),
             subtitle: Padding(
