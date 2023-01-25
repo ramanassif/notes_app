@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/views/widgets/color_item.dart';
+import 'package:notes_app/views/widgets/colors_list_view.dart';
 import 'package:notes_app/views/widgets/custom_button.dart';
 import 'package:notes_app/views/widgets/custom_text_field.dart';
 
@@ -45,6 +47,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
               content = value;
             },
           ),
+          const Padding(
+            padding: EdgeInsets.only(top: 16.0),
+            child: ColorsListView(),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 16,
@@ -57,8 +63,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                       var currentDate = DateTime.now();
-                      var formattedCurrentDate = DateFormat('dd-MM-yyyy')
-                          .format(currentDate);
+                      var formattedCurrentDate =
+                          DateFormat('dd-MM-yyyy').format(currentDate);
                       var noteModel = NoteModel(
                         title: title!,
                         content: content!,
