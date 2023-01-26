@@ -18,6 +18,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? title, content;
+  TextEditingController titleTextEditingController = TextEditingController();
+  TextEditingController contentTextEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             height: 15,
           ),
           CustomTextField(
+            textEditingController: titleTextEditingController,
             hintText: 'Title',
             maxLines: 1,
             onSaved: (value) {
@@ -40,6 +43,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             height: 16,
           ),
           CustomTextField(
+            textEditingController: contentTextEditingController,
             hintText: 'Content',
             maxLines: 3,
             onSaved: (value) {
@@ -83,5 +87,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 }
