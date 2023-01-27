@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubits/notes/notes_cubit.dart';
+import 'package:notes_app/services/theme_service/theme_service.dart';
 import 'package:notes_app/views/widgets/custom_app_bar.dart';
 import 'package:notes_app/views/widgets/notes_list_view.dart';
+import 'package:provider/provider.dart';
 
 class NotesViewBody extends StatefulWidget {
   const NotesViewBody({Key? key}) : super(key: key);
@@ -22,9 +24,13 @@ class _NotesViewBodyState extends State<NotesViewBody> {
             height: 8,
           ),
           CustomAppBar(
-            onPress: (){},
+            onPress: (){
+              Provider.of<ThemeServices>(context, listen: false).toggleMode();
+            },
             title: 'Notes',
-            icon: Icons.search,
+            icon: Provider.of<ThemeServices>(context).mode == ThemeMode.dark
+                ? Icons.wb_sunny_outlined
+                : Icons.nightlight_round_outlined,
           ),
           const Expanded(child: NotesListView()),
         ],

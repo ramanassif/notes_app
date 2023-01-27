@@ -50,7 +50,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               onChanged: (value) {
                 title = value;
               },
-              hintText: titleTextEditingController.text,
+              hintText: 'Title',
               maxLines: 1,
             ),
             const SizedBox(
@@ -61,7 +61,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
               onChanged: (value) {
                 content = value;
               },
-              hintText: contentTextEditingController.text,
+              hintText: 'Content',
               maxLines: 5,
             ),
             const SizedBox(
