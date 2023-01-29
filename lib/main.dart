@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_app/constants.dart';
 import 'package:notes_app/cubits/notes/notes_cubit.dart';
@@ -8,10 +10,10 @@ import 'package:notes_app/services/theme_service/theme.dart';
 import 'package:notes_app/services/theme_service/theme_service.dart';
 import 'package:notes_app/simple_bloc_observer.dart';
 import 'package:notes_app/views/notes_view.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   await Hive.initFlutter();
+  await GetStorage.init();
   Bloc.observer = SimpleBlocObserver();
   Hive.registerAdapter(NoteModelAdapter());
   await Hive.openBox<NoteModel>(kNotesBox);
@@ -23,24 +25,15 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ThemeServices>(
-      create: (_) => ThemeServices(),
-      child: Consumer<ThemeServices>(
-        builder: (_, model, __) => BlocProvider(
-          create: (context) => NotesCubit(),
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: Themes.lightTheme,
-            darkTheme: Themes.darkTheme,
-            themeMode: model.mode,
-            // theme: ThemeData(
-            //   brightness: Brightness.dark,
-            //   fontFamily: 'Poppins',
-            // ),
-            home: const NotesView(),
-          ),
-        ),
-      ),
+    return BlocProvider(
+        create: (context) => NotesCubit(),
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: Themes.lightTheme,
+          darkTheme: Themes.darkTheme,
+          themeMode: ThemeServices().theme,
+          home: const NotesView(),
+        )
     );
   }
 }

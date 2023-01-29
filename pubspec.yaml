@@ -41,6 +41,8 @@ dependencies:
   hive_flutter: ^1.1.0
   flutter_bloc: ^7.1.0
   provider:
+  get_storage: ^2.0.3
+  get: ^4.3.8
 
 dev_dependencies:
   flutter_test:

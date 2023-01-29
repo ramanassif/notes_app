@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:notes_app/constants.dart';
-import 'package:notes_app/services/theme_service/theme.dart';
-import 'package:notes_app/services/theme_service/theme_service.dart';
-import 'package:provider/provider.dart';
+
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
@@ -38,11 +37,11 @@ class CustomTextField extends StatelessWidget {
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.grey),
         border: buildBorder(
-            Provider.of<ThemeServices>(context).mode == ThemeMode.dark
+            Get.isDarkMode
                 ? Colors.white
                 : Colors.black),
         enabledBorder: buildBorder(
-            Provider.of<ThemeServices>(context).mode == ThemeMode.dark
+            Get.isDarkMode
                 ? Colors.white
                 : Colors.black),
         focusedBorder: buildBorder(kPrimaryColor),

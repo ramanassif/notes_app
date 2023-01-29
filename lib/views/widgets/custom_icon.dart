@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/services/theme_service/theme_service.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class CustomIcon extends StatelessWidget {
   final IconData icon;
@@ -15,7 +14,7 @@ class CustomIcon extends StatelessWidget {
       width: 46,
       height: 46,
       decoration: BoxDecoration(
-        color: Provider.of<ThemeServices>(context).mode == ThemeMode.dark
+        color: Get.isDarkMode
             ? Colors.white.withOpacity(0.05)
             : Colors.black.withOpacity(0.08),
         borderRadius: BorderRadius.circular(12),
